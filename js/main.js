@@ -560,13 +560,14 @@ function initProjectFilters() {
 }
 
 /* ==========================================================================
-   8. Copy to Clipboard Utility
+   8. Copy to Clipboard Utility & Clickable Contact Cards
    ========================================================================== */
 function initClipboardButtons() {
   const copyButtons = document.querySelectorAll('.copy-btn');
 
   copyButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
       const textToCopy = btn.getAttribute('data-copy');
       if (textToCopy) {
         navigator.clipboard.writeText(textToCopy).then(() => {
@@ -574,6 +575,20 @@ function initClipboardButtons() {
         }).catch(() => {
           showToast('Failed to copy. Please select manually.', 'info');
         });
+      }
+    });
+  });
+
+  // Navigate directly when clicking anywhere on a contact card (except copy or sublink)
+  const clickableCards = document.querySelectorAll('.clickable-card');
+  clickableCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.copy-btn') || e.target.closest('.c-sublink') || e.target.tagName.toLowerCase() === 'a') {
+        return;
+      }
+      const href = card.getAttribute('data-href');
+      if (href) {
+        window.open(href, '_blank', 'noopener,noreferrer');
       }
     });
   });

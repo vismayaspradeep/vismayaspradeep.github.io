@@ -1824,6 +1824,32 @@ body.light-theme .detail-code-preview {
   position: relative;
 }
 
+.clickable-card {
+  cursor: pointer;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.clickable-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.2);
+}
+
+.c-sublinks {
+  margin-top: 4px;
+}
+
+.c-sublink {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+.c-sublink:hover {
+  color: var(--accent-cyan);
+}
+
 .c-icon {
   width: 46px;
   height: 46px;
