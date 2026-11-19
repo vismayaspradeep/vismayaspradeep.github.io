@@ -13,7 +13,7 @@ A modern, responsive, high-performance portfolio website engineered for **Vismay
 
 2. **Hero & Live Status**:
    - Live availability badge: *"Available for QA & Test Automation Roles • Doha, Qatar"*.
-   - Location, Visa status (*Company Visa Without NOC*), and Nationality badges.
+   - Location, Visa status (*Free Visa (Transferable)*), and Nationality badges.
    - Quick CTAs: *Explore Projects*, *Interactive QA Simulator*, *Get in Touch*, and *View/Print Resume*.
 
 3. **Measurable QA Impact Metrics**:

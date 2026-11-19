@@ -595,14 +595,15 @@ function initClipboardButtons() {
 }
 
 /* ==========================================================================
-   9. Contact Form Simulation
+   9. Contact Form (Workable Google Form Style via FormSubmit & Gmail)
    ========================================================================== */
 function initContactForm() {
   const contactForm = document.getElementById('contactForm');
   const submitMsgBtn = document.getElementById('submitMsgBtn');
+  const formSuccessNotice = document.getElementById('formSuccessNotice');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const name = document.getElementById('senderName').value.trim();
@@ -615,14 +616,49 @@ function initContactForm() {
         return;
       }
 
-      // Simulate sending
       if (submitMsgBtn) {
         submitMsgBtn.disabled = true;
         submitMsgBtn.innerHTML = `<span>Sending Message...</span>`;
       }
 
-      setTimeout(() => {
+      try {
+        const formData = new FormData(contactForm);
+        const response = await fetch('https://formsubmit.co/ajax/vismayapradeep996@gmail.com', {
+          method: 'POST',
+          headers: { 
+            'Accept': 'application/json'
+          },
+          body: formData
+        });
+
+        if (response.ok) {
+          contactForm.reset();
+          if (formSuccessNotice) {
+            formSuccessNotice.style.display = 'block';
+            formSuccessNotice.innerHTML = `
+              <strong>&#10003; Thank you, ${name}!</strong> Your message regarding <em>"${topic}"</em> has been delivered directly to Vismaya's inbox (<strong>vismayapradeep996@gmail.com</strong>).
+            `;
+          }
+          showToast(`Message sent successfully to Vismaya Pradeep!`, 'success');
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (err) {
+        // Fallback: If network blocks cross-origin or offline, open Gmail compose with the pre-filled message
+        const mailtoSubject = encodeURIComponent(`Inquiry: ${topic} (from ${name})`);
+        const mailtoBody = encodeURIComponent(`Hi Vismaya,\n\nName: ${name}\nEmail: ${email}\nTopic: ${topic}\n\nMessage:\n${message}\n`);
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=vismayapradeep996@gmail.com&su=${mailtoSubject}&body=${mailtoBody}`;
+        
+        window.open(gmailUrl, '_blank', 'noopener,noreferrer');
         contactForm.reset();
+        if (formSuccessNotice) {
+          formSuccessNotice.style.display = 'block';
+          formSuccessNotice.innerHTML = `
+            <strong>&#10003; Thank you, ${name}!</strong> Gmail composer opened with your pre-filled inquiry to <strong>vismayapradeep996@gmail.com</strong>.
+          `;
+        }
+        showToast('Opening Gmail compose with your message...', 'success');
+      } finally {
         if (submitMsgBtn) {
           submitMsgBtn.disabled = false;
           submitMsgBtn.innerHTML = `
@@ -630,8 +666,7 @@ function initContactForm() {
             <span>Send Message</span>
           `;
         }
-        showToast(`Thank you, ${name}! Your inquiry regarding "${topic}" has been prepared. Vismaya will get back to you shortly.`, 'success');
-      }, 1000);
+      }
     });
   }
 }
