@@ -2352,10 +2352,8 @@ body.light-theme .form-select {
 
   /* 1. HIDE ALL SITE CONTENT EXCEPT THE RESUME MODAL COMPLETELY */
   body > *:not(#resumeModal),
-  header,
-  main,
-  footer,
   .site-header,
+  main,
   .site-footer,
   .bg-grid-pattern,
   .glow-orb,
@@ -2452,34 +2450,43 @@ body.light-theme .form-select {
     display: none !important;
   }
 
-  /* Compact typography for perfect fit on Page 1 & Page 2 */
+  /* Prominent resume header on Page 1 */
   .resume-header {
+    display: block !important;
+    visibility: visible !important;
     text-align: center !important;
-    margin-bottom: 6px !important;
+    margin-bottom: 8px !important;
     padding-bottom: 6px !important;
-    border-bottom: 1.5px solid #0f172a !important;
+    border-bottom: 2px solid #0f172a !important;
   }
 
   .r-name {
-    font-size: 16pt !important;
+    display: block !important;
+    visibility: visible !important;
+    font-size: 18pt !important;
     font-weight: 800 !important;
     margin-bottom: 2px !important;
     color: #0f172a !important;
     letter-spacing: 0.02em !important;
     line-height: 1.1 !important;
+    text-transform: uppercase !important;
   }
 
   .r-title {
-    font-size: 10pt !important;
+    display: block !important;
+    visibility: visible !important;
+    font-size: 11pt !important;
     font-weight: 600 !important;
     color: #0284c7 !important;
-    margin-bottom: 3px !important;
+    margin-bottom: 4px !important;
   }
 
   .r-contact, .r-visa {
-    font-size: 7.8pt !important;
+    display: block !important;
+    visibility: visible !important;
+    font-size: 8pt !important;
     color: #334155 !important;
-    line-height: 1.25 !important;
+    line-height: 1.3 !important;
   }
 
   .r-section {
