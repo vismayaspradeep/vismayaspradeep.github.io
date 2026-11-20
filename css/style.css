@@ -2144,104 +2144,107 @@ body.light-theme .form-select {
 .resume-sheet {
   background: #ffffff;
   color: #1e293b;
-  padding: 40px;
+  padding: 32px 36px;
   border-radius: var(--radius-sm);
   font-family: var(--font-sans);
-  line-height: 1.5;
+  line-height: 1.45;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .resume-header {
   text-align: center;
-  margin-bottom: 24px;
-  padding-bottom: 18px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
   border-bottom: 2px solid #0f172a;
 }
 
 .r-name {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: 1.85rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #0f172a;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .r-title {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: #0284c7;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .r-contact, .r-visa {
-  font-size: 0.86rem;
+  font-size: 0.84rem;
   color: #475569;
+  line-height: 1.4;
 }
 
 .r-section {
-  margin-bottom: 22px;
+  margin-bottom: 14px;
 }
 
 .r-heading {
   font-family: var(--font-heading);
-  font-size: 0.98rem;
+  font-size: 0.92rem;
   font-weight: 700;
   color: #0f172a;
   border-bottom: 1px solid #cbd5e1;
-  padding-bottom: 4px;
-  margin-bottom: 10px;
+  padding-bottom: 3px;
+  margin-bottom: 6px;
   letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .r-text, .r-competencies {
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   color: #334155;
-  line-height: 1.55;
+  line-height: 1.45;
   text-align: justify;
 }
 
 .r-job {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .r-job-header {
   display: flex;
   justify-content: space-between;
-  font-size: 0.92rem;
-  margin-bottom: 6px;
+  font-size: 0.88rem;
+  margin-bottom: 4px;
   color: #0f172a;
 }
 
 .r-bullets {
-  padding-left: 18px;
-  margin-bottom: 10px;
+  padding-left: 16px;
+  margin-bottom: 6px;
 }
 
 .r-bullets li {
-  font-size: 0.84rem;
+  font-size: 0.8rem;
   color: #334155;
-  line-height: 1.5;
-  margin-bottom: 4px;
+  line-height: 1.4;
+  margin-bottom: 3px;
 }
 
 .r-job-achievements {
   background: #f8fafc;
   border-left: 3px solid #0284c7;
-  padding: 8px 14px;
-  font-size: 0.82rem;
+  padding: 6px 10px;
+  font-size: 0.78rem;
   color: #334155;
   border-radius: 0 4px 4px 0;
-}
-
-.r-job-achievements ul {
-  padding-left: 18px;
   margin-top: 4px;
 }
 
+.r-job-achievements ul {
+  padding-left: 16px;
+  margin-top: 3px;
+}
+
 .r-project-item {
-  margin-bottom: 10px;
-  font-size: 0.85rem;
+  margin-bottom: 8px;
+  font-size: 0.8rem;
   color: #334155;
 }
 
@@ -2249,12 +2252,52 @@ body.light-theme .form-select {
   color: #0f172a;
 }
 
+.r-project-item .r-bullets {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
 .r-skills-grid {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  font-size: 0.84rem;
+  gap: 3px;
+  font-size: 0.8rem;
   color: #334155;
+}
+
+.r-edu-item {
+  font-size: 0.82rem;
+  margin-bottom: 4px;
+}
+
+.r-subtext {
+  font-size: 0.8rem;
+  color: #475569;
+  margin: 1px 0;
+}
+
+.r-score {
+  font-size: 0.8rem;
+  margin: 1px 0;
+  color: #0f172a;
+}
+
+.resume-page-break {
+  border-top: 2px dashed #cbd5e1;
+  margin: 24px 0;
+  position: relative;
+}
+
+.resume-page-break::after {
+  content: 'PAGE 2';
+  position: absolute;
+  top: -10px;
+  right: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #94a3b8;
+  background: #ffffff;
+  padding: 0 6px;
 }
 
 /* ---------------- TOAST NOTIFICATION ---------------- */
@@ -2300,54 +2343,246 @@ body.light-theme .form-select {
   }
 }
 
-/* ---------------- PRINT MEDIA STYLES ---------------- */
+/* ---------------- PRINT MEDIA STYLES (EXACT 2-PAGE FORMAT) ---------------- */
 @media print {
-  body * {
-    visibility: hidden;
-  }
-  
-  .modal-backdrop,
-  #printableResumeArea,
-  #printableResumeArea * {
-    visibility: visible;
+  @page {
+    size: A4 portrait;
+    margin: 8mm 12mm 8mm 12mm;
   }
 
-  .modal-backdrop {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: auto;
-    background: transparent;
-    padding: 0;
-    display: block;
-  }
-
-  .modal-dialog {
-    max-width: 100%;
-    max-height: none;
-    border: none;
-    box-shadow: none;
-    background: transparent;
-  }
-
-  .modal-header,
+  /* 1. HIDE ALL SITE CONTENT EXCEPT THE RESUME MODAL COMPLETELY */
+  body > *:not(#resumeModal),
+  header,
+  main,
+  footer,
   .site-header,
   .site-footer,
+  .bg-grid-pattern,
   .glow-orb,
-  .bg-grid-pattern {
+  .toast-container,
+  .modal-header,
+  .modal-actions,
+  .modal-close-btn {
     display: none !important;
   }
 
+  /* 2. RESET HTML & BODY */
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    font-size: 8.5pt !important;
+    line-height: 1.3 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* 3. FLATTEN MODAL DIALOG INTO CLEAN DOCUMENT */
+  .modal-backdrop {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+  }
+
+  .modal-dialog {
+    max-width: 100% !important;
+    width: 100% !important;
+    max-height: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+
   .modal-body {
-    padding: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    max-height: none !important;
   }
 
   .resume-sheet {
-    box-shadow: none;
-    padding: 20mm;
-    margin: 0;
-    width: 100%;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-radius: 0 !important;
+  }
+
+  /* 4. EXACT 2-PAGE LAYOUT */
+  .resume-page {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .resume-page-1 {
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  .resume-page-break {
+    display: block !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
+  .resume-page-break::after {
+    display: none !important;
+  }
+
+  /* Compact typography for perfect fit on Page 1 & Page 2 */
+  .resume-header {
+    text-align: center !important;
+    margin-bottom: 6px !important;
+    padding-bottom: 6px !important;
+    border-bottom: 1.5px solid #0f172a !important;
+  }
+
+  .r-name {
+    font-size: 16pt !important;
+    font-weight: 800 !important;
+    margin-bottom: 2px !important;
+    color: #0f172a !important;
+    letter-spacing: 0.02em !important;
+    line-height: 1.1 !important;
+  }
+
+  .r-title {
+    font-size: 10pt !important;
+    font-weight: 600 !important;
+    color: #0284c7 !important;
+    margin-bottom: 3px !important;
+  }
+
+  .r-contact, .r-visa {
+    font-size: 7.8pt !important;
+    color: #334155 !important;
+    line-height: 1.25 !important;
+  }
+
+  .r-section {
+    margin-bottom: 6px !important;
+  }
+
+  .r-heading {
+    font-size: 8.8pt !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    border-bottom: 1px solid #94a3b8 !important;
+    padding-bottom: 2px !important;
+    margin-bottom: 4px !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+  }
+
+  .r-text, .r-competencies {
+    font-size: 7.8pt !important;
+    color: #1e293b !important;
+    line-height: 1.28 !important;
+    text-align: justify !important;
+  }
+
+  .r-job {
+    margin-bottom: 6px !important;
+  }
+
+  .r-job-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    font-size: 8.2pt !important;
+    margin-bottom: 2px !important;
+    color: #0f172a !important;
+    line-height: 1.2 !important;
+  }
+
+  .r-bullets {
+    padding-left: 12px !important;
+    margin-bottom: 3px !important;
+  }
+
+  .r-bullets li {
+    font-size: 7.6pt !important;
+    color: #1e293b !important;
+    line-height: 1.25 !important;
+    margin-bottom: 1.5px !important;
+  }
+
+  .r-job-achievements {
+    background: #f8fafc !important;
+    border-left: 2px solid #0284c7 !important;
+    padding: 3px 6px !important;
+    font-size: 7.5pt !important;
+    color: #1e293b !important;
+    margin-top: 3px !important;
+    margin-bottom: 3px !important;
+  }
+
+  .r-job-achievements ul {
+    padding-left: 12px !important;
+    margin-top: 2px !important;
+  }
+
+  .r-project-item {
+    margin-bottom: 5px !important;
+    font-size: 7.6pt !important;
+    color: #1e293b !important;
+  }
+
+  .r-project-item strong {
+    color: #0f172a !important;
+    font-size: 7.8pt !important;
+  }
+
+  .r-project-item .r-bullets {
+    margin-bottom: 1px !important;
+    margin-top: 1px !important;
+  }
+
+  .r-skills-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2.5px !important;
+    font-size: 7.6pt !important;
+    color: #1e293b !important;
+  }
+
+  .r-edu-item {
+    font-size: 7.8pt !important;
+    margin-bottom: 3px !important;
+  }
+
+  .r-subtext {
+    font-size: 7.6pt !important;
+    color: #475569 !important;
+    margin: 1px 0 !important;
+  }
+
+  .r-score {
+    font-size: 7.6pt !important;
+    margin: 1px 0 !important;
+    color: #0f172a !important;
   }
 }
 
